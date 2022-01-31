@@ -59,9 +59,10 @@ public class IndexPage extends BaseClass
     {
         action.click(clickableLink().get(4));
     }
-    public void clickOnSignUpBtn()
+    public SignUpPage clickOnSignUpBtn()
     {
-        action.click(clickableLink().get(5));
+        action.click(clickableLink().get(7));
+        return new SignUpPage();
     }
     public void clickOnCartBtn()
     {
