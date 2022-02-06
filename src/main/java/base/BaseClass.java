@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeSuite;
 
 import java.io.FileInputStream;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 public class BaseClass
 {
@@ -38,16 +39,25 @@ public class BaseClass
         {
             WebDriverManager.chromedriver().setup();
             driver=new ChromeDriver();
+            driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(Integer.parseInt(prop.getProperty("pageLoadTimeout")), TimeUnit.SECONDS);
+            driver.get(prop.getProperty("url"));
         }
         else if (browser.equalsIgnoreCase("firefox"))
         {
             WebDriverManager.firefoxdriver().setup();
             driver=new FirefoxDriver();
+            driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(Integer.parseInt(prop.getProperty("pageLoadTimeout")), TimeUnit.SECONDS);
+            driver.get(prop.getProperty("url"));
         }
         else if (browser.equalsIgnoreCase("ie"))
         {
             WebDriverManager.iedriver().setup();
             driver=new InternetExplorerDriver();
+            driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(Integer.parseInt(prop.getProperty("pageLoadTimeout")), TimeUnit.SECONDS);
+            driver.get(prop.getProperty("url"));
         }
         else
         {
