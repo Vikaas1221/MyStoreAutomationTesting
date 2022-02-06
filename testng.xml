@@ -4,6 +4,8 @@
     <test name="Test" >
         <classes>
             <class name="com.mystore.testcases.IndexPageTest"/>
+            <class name="com.mystore.testcases.SignUpPageTest"/>
+            <class name="com.mystore.testcases.LoginPageTest"/>
         </classes>
     </test>
 </suite>
