@@ -27,13 +27,30 @@ public class SignUpPageTest extends BaseClass
     {
         action.closeBrowser();
     }
-    @Test
-    public void signUpWithValidCreds()
+    @Test(groups = "sanity")
+    public void signUpWithNewUser()
     {
         signUpPage=indexPage.clickOnSignUpBtn();
         Assert.assertEquals(signUpPage.pageTitle(),"Sign up");
         ResponsePopupBox response=signUpPage.signUpNewUser();
-        System.out.println("Alert message: "+response.getResponseMessage());
         Assert.assertEquals(response.getResponseMessage(),"Sign up successful.");
     }
+    @Test(groups = "sanity")
+    public void signUpWithAlreadyExistingUser()
+    {
+        signUpPage=indexPage.clickOnSignUpBtn();
+        Assert.assertEquals(signUpPage.pageTitle(),"Sign up");
+        ResponsePopupBox response=signUpPage.signUpNewUser(prop.getProperty("username"),prop.getProperty("password") );
+        Assert.assertEquals(response.getResponseMessage(),"This user already exist.");
+    }
+    @Test
+    public void signUpWithOnlyUsername()
+    {
+        signUpPage=indexPage.clickOnSignUpBtn();
+        Assert.assertEquals(signUpPage.pageTitle(),"Sign up");
+        ResponsePopupBox response=signUpPage.signUpNewUser(prop.getProperty("username"),"");
+        Assert.assertEquals(response.getResponseMessage(),"Please fill out Username and Password.");
+    }
+
+
 }
