@@ -1,11 +1,11 @@
 package actiondriver;
 
 import base.BaseClass;
-import org.openqa.selenium.ElementClickInterceptedException;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.Random;
 
 public class Action extends BaseClass implements ActionInterface
 {
@@ -94,6 +94,29 @@ public class Action extends BaseClass implements ActionInterface
     public String getAttribute(WebElement element, String attribute) {
         waitForElementToBeVisible(element);
         return element.getAttribute(attribute);
+    }
+
+
+    @Override
+    public String getAlertMsg()
+    {
+        WebDriverWait wait=new WebDriverWait(driver,10);
+        return wait.until(ExpectedConditions.alertIsPresent()).getText();
+    }
+
+    @Override
+    public String generateName() {
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                + "0123456789"
+                + "abcdefghijklmnopqrstuvxyz";
+        StringBuilder sb = new StringBuilder(10);
+        for (int i = 0; i < 10; i++) {
+            int index
+                    = (int) (AlphaNumericString.length() * Math.random());
+
+                     sb.append(AlphaNumericString.charAt(index));
+        }
+        return "auto-" + sb.toString();
     }
 
     @Override
