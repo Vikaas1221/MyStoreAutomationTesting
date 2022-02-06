@@ -32,7 +32,7 @@ public class SignUpPageTest extends BaseClass
     {
         signUpPage=indexPage.clickOnSignUpBtn();
         Assert.assertEquals(signUpPage.pageTitle(),"Sign up");
-        ResponsePopupBox response=signUpPage.signUpNewUser();
+        ResponsePopupBox response=signUpPage.signUp();
         Assert.assertEquals(response.getResponseMessage(),"Sign up successful.");
     }
     @Test(groups = "sanity")
@@ -40,7 +40,7 @@ public class SignUpPageTest extends BaseClass
     {
         signUpPage=indexPage.clickOnSignUpBtn();
         Assert.assertEquals(signUpPage.pageTitle(),"Sign up");
-        ResponsePopupBox response=signUpPage.signUpNewUser(prop.getProperty("username"),prop.getProperty("password") );
+        ResponsePopupBox response=signUpPage.signUp(prop.getProperty("username"),prop.getProperty("password") );
         Assert.assertEquals(response.getResponseMessage(),"This user already exist.");
     }
     @Test
@@ -48,7 +48,7 @@ public class SignUpPageTest extends BaseClass
     {
         signUpPage=indexPage.clickOnSignUpBtn();
         Assert.assertEquals(signUpPage.pageTitle(),"Sign up");
-        ResponsePopupBox response=signUpPage.signUpNewUser(prop.getProperty("username"),"");
+        ResponsePopupBox response=signUpPage.signUp(prop.getProperty("username"),"");
         Assert.assertEquals(response.getResponseMessage(),"Please fill out Username and Password.");
     }
 

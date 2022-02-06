@@ -10,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 public class SignUpPage extends BaseClass
 {
     ActionInterface action=new Action();
+    String user_name,pass_word;
 
     @FindBy(xpath = "//h5[text()='Sign up']")
     WebElement pageTitle;
@@ -32,14 +33,14 @@ public class SignUpPage extends BaseClass
     {
         return action.getText(pageTitle);
     }
-    public ResponsePopupBox signUpNewUser()
+    public ResponsePopupBox signUp()
     {
         action.enterText(username,action.generateName());
-        action.enterText(password,"qa234");
+        action.enterText(password,"qavj");
         action.click(signup_btn);
         return new ResponsePopupBox();
     }
-    public ResponsePopupBox signUpNewUser(String user_name, String password_)
+    public ResponsePopupBox signUp(String user_name, String password_)
     {
 
         action.enterText(username,user_name);
@@ -47,4 +48,5 @@ public class SignUpPage extends BaseClass
         action.click(signup_btn);
         return new ResponsePopupBox();
     }
+
 }
