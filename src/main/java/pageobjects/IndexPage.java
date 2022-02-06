@@ -55,9 +55,10 @@ public class IndexPage extends BaseClass
         }
         return allLinks;
     }
-    public void clickOnLoginBtn()
+    public LoginPage clickOnLoginBtn()
     {
         action.click(clickableLink().get(4));
+        return new LoginPage();
     }
     public SignUpPage clickOnSignUpBtn()
     {
