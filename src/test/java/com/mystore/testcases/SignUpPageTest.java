@@ -1,7 +1,7 @@
 package com.mystore.testcases;
 
 import actiondriver.Action;
-import actiondriver.ActionInterface;
+import Interfaces.ActionInterface;
 import base.BaseClass;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;

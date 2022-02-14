@@ -1,7 +1,11 @@
-package actiondriver;
+package Interfaces;
 
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import java.io.IOException;
 
 public interface ActionInterface
 {
@@ -19,5 +23,5 @@ public interface ActionInterface
     String generateName();
     void openBrowser();
     void closeBrowser();
-
+    String takeScreenshot();
 }
