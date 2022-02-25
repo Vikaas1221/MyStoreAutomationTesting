@@ -24,7 +24,7 @@ public class BaseClass
     /*
     * @ReadPropertiesFile- It will read the data from the properties file
      */
-    @BeforeSuite
+    @BeforeSuite(groups = "sanity")
     public static void ReadPropertiesFile()
     {
         ExtentReportManager.configureExtentReport();
@@ -38,7 +38,7 @@ public class BaseClass
             System.out.println("Failed to read file due to exception: "+e.getMessage());
         }
     }
-    @AfterSuite
+    @AfterSuite(groups = "sanity")
     public void SaveReport()
     {
         System.out.println("In After suite method");

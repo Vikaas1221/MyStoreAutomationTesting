@@ -9,7 +9,7 @@ public class ExtentReportManager
     public static void configureExtentReport()
     {
         reports=new ExtentReports();
-        ExtentSparkReporter sparkReporter=new ExtentSparkReporter(System.getProperty("user.dir")+"\\target\\StoreReport.html");
+        ExtentSparkReporter sparkReporter=new ExtentSparkReporter("target\\Reports\\StoreReport.html");
         sparkReporter.config().setReportName("Executed By: "+System.getProperty("user.name"));
         sparkReporter.config().setDocumentTitle("My Store Automation Test Report");
         reports.attachReporter(sparkReporter);

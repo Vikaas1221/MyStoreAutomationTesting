@@ -9,17 +9,18 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import java.util.Arrays;
+
 public class EventListner implements ITestListener
 {
     ExtentTest extentTest;
-
     @Override
     public void onTestStart(ITestResult result) {
-        // Execute before the test case start
+         //Execute before the test case start
         extentTest=ExtentReportManager.reports.createTest(result.getName());
-        extentTest.log(Status.INFO,"Extent test started");
-
+        extentTest.log(Status.INFO,"Execution of Testcases started");
     }
+
 
     @Override
     public void onTestSkipped(ITestResult result) {
@@ -27,15 +28,31 @@ public class EventListner implements ITestListener
     }
 
     @Override
-    public void onTestSuccess(ITestResult result) {
-        extentTest.log(Status.PASS,result.getName());
+    public void onTestSuccess(ITestResult result)
+    {
+      extentTest.log(Status.PASS,result.getName());
     }
 
     @Override
     public void onTestFailure(ITestResult result)
     {
-        ActionInterface action=new Action();
-        extentTest.fail("Failed", MediaEntityBuilder.createScreenCaptureFromPath(action.takeScreenshot()).build());
+        String methodName=result.getMethod().getMethodName();
+        if (result.getStatus()==ITestResult.FAILURE)
+        {
+            ActionInterface action = new Action();
+            String exception= Arrays.toString(result.getThrowable().getStackTrace());
+            extentTest.fail("Failed Method:"+methodName+"\n"+"Exception: "+exception);
+            try {
+                //In order to attach screenshot at the step where TC failed then we use MediaEntityBuilder
+                extentTest.fail("Failed", MediaEntityBuilder.createScreenCaptureFromPath("./Screenshots/"+action.takeScreenshot()).build());
+              //  extentTest.addScreenCaptureFromPath("./Screenshots/"+action.takeScreenshot());
+            }
+            catch (Exception e)
+            {
+                extentTest.fail("Cannot attached screenshot");
+            }
+        }
+
     }
 
     @Override

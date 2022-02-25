@@ -15,18 +15,18 @@ public class IndexPageTest extends BaseClass
 {
     IndexPage indexPage;
     ActionInterface action=new Action();
-    @BeforeMethod
+    @BeforeMethod(groups = "sanity")
     public void setup()
     {
         action.openBrowser();
         indexPage=new IndexPage();
     }
-    @AfterMethod
+    @AfterMethod(groups = "sanity")
     public void tearDown()
     {
         action.closeBrowser();
     }
-    @Test(priority = 1)
+    @Test(priority = 1,groups = "sanity")
     public void validatePageTitle()
     {
         Assert.assertEquals("PRODUCT STORE", indexPage.pageTitle());

@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
+import java.io.IOException;
 
 public class Action extends BaseClass implements ActionInterface
 {
@@ -135,18 +136,19 @@ public class Action extends BaseClass implements ActionInterface
     @Override
     public String takeScreenshot() {
         TakesScreenshot takesScreenshot=(TakesScreenshot) driver;
-        File source=takesScreenshot.getScreenshotAs(OutputType.FILE);
-        String destination=System.getProperty("user.dir")+"\\target\\"+generateName()+".png";
-        System.out.println("Screenshot Destination: "+destination);
-        File finalDestination = new File(destination);
+        File screenShotFile=takesScreenshot.getScreenshotAs(OutputType.FILE);
+        String image=generateName()+".png";
         try {
-            FileUtils.copyFile(source,finalDestination);
-        }catch (Exception e)
+            FileUtils.copyFile(screenShotFile,new File("target\\Reports\\Screenshots\\"+image));
+        }
+        catch (IOException e)
         {
             e.printStackTrace();
         }
-        return destination;
+        return image;
     }
+
+
 
 
 }

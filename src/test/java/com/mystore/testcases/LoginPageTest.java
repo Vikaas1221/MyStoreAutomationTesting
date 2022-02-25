@@ -19,13 +19,13 @@ public class LoginPageTest extends BaseClass
     IndexPage indexPage;
     LoginPage loginPage;
     HomePage homePage;
-    @BeforeMethod
+    @BeforeMethod(groups = "sanity")
     public void setup()
     {
         action.openBrowser();
         indexPage=new IndexPage();
     }
-    @AfterMethod
+    @AfterMethod(groups = "sanity")
     public void tearDown()
     {
         action.closeBrowser();
@@ -37,7 +37,7 @@ public class LoginPageTest extends BaseClass
        loginPage=indexPage.clickOnLoginBtn();
        Assert.assertEquals(loginPage.pageTitle(),"Log in");
        homePage=loginPage.login(prop.getProperty("username"),prop.getProperty("password"));
-       Assert.assertEquals(homePage.getWelcomeText(),"Welcome "+prop.getProperty("username"));
+       Assert.assertEquals(homePage.getWelcomeText(),"Welcome"+prop.getProperty("username"));
     }
     @Test
     public void LoginWithIncorrectCredentials()
