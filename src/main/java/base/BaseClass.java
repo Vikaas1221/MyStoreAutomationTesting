@@ -1,11 +1,16 @@
 package base;
 
+import com.aventstack.extentreports.ExtentReports;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+import utility.ExtentReportManager;
+
 
 import java.io.FileInputStream;
 import java.util.Properties;
@@ -19,9 +24,10 @@ public class BaseClass
     /*
     * @ReadPropertiesFile- It will read the data from the properties file
      */
-    @BeforeSuite
+    @BeforeSuite(groups = "sanity")
     public static void ReadPropertiesFile()
     {
+        ExtentReportManager.configureExtentReport();
         try {
             prop=new Properties();
             FileInputStream ip=new FileInputStream(System.getProperty("user.dir")+"/configration/config.properties");
@@ -31,6 +37,13 @@ public class BaseClass
         {
             System.out.println("Failed to read file due to exception: "+e.getMessage());
         }
+    }
+    @AfterSuite(groups = "sanity")
+    public void SaveReport()
+    {
+        System.out.println("In After suite method");
+        ExtentReportManager.saveExtentReport();
+        System.out.println("After suite method exected");
     }
     public static void launchBrowser()
     {
@@ -65,4 +78,6 @@ public class BaseClass
             return;
         }
     }
+
+
 }

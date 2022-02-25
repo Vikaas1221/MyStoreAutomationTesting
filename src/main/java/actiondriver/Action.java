@@ -1,11 +1,14 @@
 package actiondriver;
 
+import Interfaces.ActionInterface;
 import base.BaseClass;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.Random;
+import java.io.File;
+import java.io.IOException;
 
 public class Action extends BaseClass implements ActionInterface
 {
@@ -128,5 +131,24 @@ public class Action extends BaseClass implements ActionInterface
     public void closeBrowser() {
         driver.quit();
     }
+
+
+    @Override
+    public String takeScreenshot() {
+        TakesScreenshot takesScreenshot=(TakesScreenshot) driver;
+        File screenShotFile=takesScreenshot.getScreenshotAs(OutputType.FILE);
+        String image=generateName()+".png";
+        try {
+            FileUtils.copyFile(screenShotFile,new File("target\\Reports\\Screenshots\\"+image));
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        return image;
+    }
+
+
+
 
 }

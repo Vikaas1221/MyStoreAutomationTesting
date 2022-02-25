@@ -1,7 +1,7 @@
 package com.mystore.testcases;
 
 import actiondriver.Action;
-import actiondriver.ActionInterface;
+import Interfaces.ActionInterface;
 import base.BaseClass;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -16,13 +16,13 @@ public class SignUpPageTest extends BaseClass
     ActionInterface action=new Action();
     IndexPage indexPage;
     SignUpPage signUpPage;
-    @BeforeMethod
+    @BeforeMethod(groups = "sanity")
     public void setup()
     {
         action.openBrowser();
         indexPage=new IndexPage();
     }
-    @AfterMethod
+    @AfterMethod(groups = "sanity")
     public void tearDown()
     {
         action.closeBrowser();

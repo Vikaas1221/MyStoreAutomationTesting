@@ -1,7 +1,7 @@
 package pageobjects;
 
 import actiondriver.Action;
-import actiondriver.ActionInterface;
+import Interfaces.ActionInterface;
 import base.BaseClass;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
