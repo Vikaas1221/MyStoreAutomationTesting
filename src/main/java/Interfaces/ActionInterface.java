@@ -14,6 +14,8 @@ public interface ActionInterface
     void waitForButtonToBeClickable(WebElement element,int timeout);
     void waitForElementToBeVisible(WebElement element,int timeout);
     void waitForElementToBeVisible(WebElement element);
+    void sleep(int time);
+    void scrollIntoView(WebElement element);
     String getPageTitle();
     String currentPageURL();
     void enterText(WebElement element,String text);

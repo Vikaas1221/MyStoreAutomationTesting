@@ -64,6 +64,21 @@ public class Action extends BaseClass implements ActionInterface
     public void waitForElementToBeVisible(WebElement element) {
         new WebDriverWait(driver,Integer.parseInt(prop.getProperty("pageLoadTimeout"))).until(ExpectedConditions.visibilityOf(element));
     }
+    @Override
+    public void sleep(int time)
+    {
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    @Override
+    public void scrollIntoView(WebElement element)
+    {
+        JavascriptExecutor js=(JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);",element);
+    }
 
     @Override
     public String getPageTitle() {
@@ -72,6 +87,11 @@ public class Action extends BaseClass implements ActionInterface
 
     @Override
     public String currentPageURL() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return driver.getCurrentUrl();
     }
 
@@ -147,6 +167,7 @@ public class Action extends BaseClass implements ActionInterface
         }
         return image;
     }
+
 
 
 
