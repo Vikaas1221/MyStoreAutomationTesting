@@ -9,6 +9,8 @@
             <class name="com.mystore.testcases.IndexPageTest"/>
             <class name="com.mystore.testcases.SignUpPageTest"/>
             <class name="com.mystore.testcases.LoginPageTest"/>
+            <class name="com.mystore.testcases.HomePageTest"/>
+            <class name="com.mystore.testcases.AddToCartTest"/>
         </classes>
     </test>
 </suite>

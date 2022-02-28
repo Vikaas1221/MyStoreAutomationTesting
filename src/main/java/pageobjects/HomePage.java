@@ -16,6 +16,9 @@ public class HomePage extends BaseClass
     @FindBy(xpath = "//div[@id='tbodyid']/div[1]//img")
     WebElement ProductCard;
 
+    @FindBy(xpath = "//div[@id='tbodyid']/div[1]//img/../..//h4/a")
+    WebElement ProductName;
+
 
 
     public HomePage()
@@ -28,10 +31,10 @@ public class HomePage extends BaseClass
         return action.getText(WelcomeText);
     }
 
-    public void selectTheProduct()
+    public String selectTheProduct()
     {
         action.scrollIntoView(ProductCard);
-        //String text=ProductCard.getText();
+        String text=action.getText(ProductName);
         action.click(ProductCard);
 
         try {
@@ -39,6 +42,9 @@ public class HomePage extends BaseClass
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        return text;
+
     }
+
 
 }
